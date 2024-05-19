@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Job::factory(10)->create();
+        Job::factory()->withEmployer(1)->create();
     }
 }

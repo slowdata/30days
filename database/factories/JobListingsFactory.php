@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 
+use App\Models\Employer;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +30,15 @@ class JobListingsFactory extends Factory
     {
         return [
             'title' => fake()->jobTitle(),
+            'employer_id' => Employer::factory(),
             'salary' => fake()->numberBetween(30, 60) . '.000€',
         ];
+    }
+
+    public function withEmployer(int $id): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'employer_id' => Employer::find($id)->id,
+        ]);
     }
 }
