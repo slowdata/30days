@@ -6,6 +6,7 @@ use Database\Factories\JobListingsFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Job extends Model
 {
@@ -17,6 +18,16 @@ class Job extends Model
     public static function newFactory(): Factory
     {
         return JobListingsFactory::new();
+    }
+
+    public function employer(): BelongsTo
+    {
+        return $this->belongsTo(Employer::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
     }
 
 

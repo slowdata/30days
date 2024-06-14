@@ -9,15 +9,20 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    return view('jobs', [
-        'jobs' => Job::all()
+    return view('jobs.index', ['jobs' => Job::with('employer')->paginate(3)
     ]);
 });
 
+Route::get('/jobs/create', function () {
+    return view('jobs.create');
+});
+
 Route::get('/jobs/{job}', function (Job $job) {
-    return view('job', [
-        'job' => $job
-    ]);
+    return view('jobs.show', ['job' => $job]);
+});
+
+Route::post('/jobs', function () {
+    dd(request()->all());
 });
 
 Route::get('/contact', function () {
