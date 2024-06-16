@@ -7,7 +7,7 @@
                     {{$job->employer->name}}
                 </div>
                 <div class="flex">
-                    <span class="font-bold ">{{$job['title']}}:</span>
+                    <span class="font-bold pr-1">{{$job['title']}}:</span>
                     Pays {{$job['salary']}} per year.
                 </div>
             </a>
